@@ -7,4 +7,8 @@ defmodule Board do
   def insert_symbol(board, index, symbol) do
     List.replace_at(board, index, symbol)
   end
+
+  def cell_value(board, index) do
+    Enum.at(board, index)
+  end
 end
