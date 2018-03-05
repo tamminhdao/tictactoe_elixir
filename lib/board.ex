@@ -11,4 +11,8 @@ defmodule Board do
   def cell_value(board, index) do
     Enum.at(board, index)
   end
+
+  def empty_cell(board, index) do
+    cell_value(board, index) == :empty
+  end
 end

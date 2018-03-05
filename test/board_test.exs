@@ -25,4 +25,10 @@ defmodule BoardTest do
     assert Board.cell_value(marked_board, 1) == :player_two
     assert Board.cell_value(marked_board, 2) == :empty
   end
+
+  test "returns true if a cell is empty and false otherwise" do
+    board = Board.empty_board() |> Board.insert_symbol(1, :player_two)
+    assert Board.empty_cell(board, 0) == true
+    assert Board.empty_cell(board, 1) == false
+  end
 end
