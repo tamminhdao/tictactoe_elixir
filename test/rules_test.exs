@@ -11,6 +11,19 @@ defmodule RulesTest do
       assert Rules.draw?(empty_board) == false
     end
 
+    test "game is in progress if the board is empty" do
+      empty_board = Board.empty_board()
+      assert Rules.game_in_progress?(empty_board) == true
+    end
+
+    test "game is in progress if there is not yet a win or a draw" do
+      marked_board = Board.empty_board()
+                    |> Board.insert_symbol(2, :player_one)
+                    |> Board.insert_symbol(5, :player_two)
+                    |> Board.insert_symbol(6, :player_one)
+      assert Rules.game_in_progress?(marked_board) == true
+    end
+
     test "winning at the top row" do
       winning_board = Board.empty_board()
                       |> Board.insert_symbol(0, :player_one)
