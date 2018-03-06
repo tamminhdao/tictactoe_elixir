@@ -6,12 +6,18 @@ defmodule RulesTest do
       assert Rules.win?(empty_board) == false
     end
 
+    test "it's not a draw if the board is completely empty" do
+      empty_board = Board.empty_board()
+      assert Rules.draw?(empty_board) == false
+    end
+
     test "winning at the top row" do
       winning_board = Board.empty_board()
                       |> Board.insert_symbol(0, :player_one)
                       |> Board.insert_symbol(1, :player_one)
                       |> Board.insert_symbol(2, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning at the middle row" do
@@ -20,6 +26,7 @@ defmodule RulesTest do
                       |> Board.insert_symbol(4, :player_one)
                       |> Board.insert_symbol(5, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning at the bottom row" do
@@ -28,6 +35,7 @@ defmodule RulesTest do
                       |> Board.insert_symbol(7, :player_one)
                       |> Board.insert_symbol(8, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning at the left column" do
@@ -36,6 +44,7 @@ defmodule RulesTest do
                       |> Board.insert_symbol(3, :player_one)
                       |> Board.insert_symbol(6, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning at the middle column" do
@@ -44,6 +53,7 @@ defmodule RulesTest do
                       |> Board.insert_symbol(4, :player_one)
                       |> Board.insert_symbol(7, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning at the right column" do
@@ -52,6 +62,7 @@ defmodule RulesTest do
                       |> Board.insert_symbol(5, :player_one)
                       |> Board.insert_symbol(8, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning by diagonal top left to bottom right" do
@@ -60,6 +71,7 @@ defmodule RulesTest do
                       |> Board.insert_symbol(4, :player_one)
                       |> Board.insert_symbol(8, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
     test "winning by diagonal top right to bottom left" do
@@ -68,9 +80,10 @@ defmodule RulesTest do
                       |> Board.insert_symbol(4, :player_one)
                       |> Board.insert_symbol(6, :player_one)
       assert Rules.win?(winning_board) == true
+      assert Rules.draw?(winning_board) == false
     end
 
-    test "win?() returns nil when there is a tie" do
+    test "the board recognizes a draw" do
       tie_board = Board.empty_board()
                     |> Board.insert_symbol(0, :player_one)
                     |> Board.insert_symbol(1, :player_two)
@@ -82,6 +95,7 @@ defmodule RulesTest do
                     |> Board.insert_symbol(6, :player_two)
                     |> Board.insert_symbol(8, :player_one)
       assert Rules.win?(tie_board) == nil
+      assert Rules.draw?(tie_board) == true
     end
 
     test "winning combos" do

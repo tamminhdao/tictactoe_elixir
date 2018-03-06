@@ -8,11 +8,15 @@ defmodule Rules do
     if board == Board.empty_board() do
       false
     else
-      Enum.find_value(winning_combos(board), fn(x) -> identical(x) end)
+      Enum.find_value(winning_combos(board), fn(x) -> identical?(x) end)
     end
   end
 
-  defp identical(enumerable) do
+  def draw?(board) do
+    Enum.find_value(winning_combos(board), fn(x) -> identical?(x) end) == nil
+  end
+
+  defp identical?(enumerable) do
     Enum.uniq(enumerable) |> Kernel.length == 1
   end
 end
