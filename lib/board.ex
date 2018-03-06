@@ -12,7 +12,7 @@ defmodule Board do
     Enum.at(board, index)
   end
 
-  def empty_cell(board, index) do
+  def empty_cell?(board, index) do
     cell_value(board, index) == :empty
   end
 

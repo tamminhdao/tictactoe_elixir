@@ -28,8 +28,8 @@ defmodule BoardTest do
 
   test "returns true if a cell is empty and false otherwise" do
     board = Board.empty_board() |> Board.insert_symbol(1, :player_two)
-    assert Board.empty_cell(board, 0) == true
-    assert Board.empty_cell(board, 1) == false
+    assert Board.empty_cell?(board, 0) == true
+    assert Board.empty_cell?(board, 1) == false
   end
 
   test "obtain all rows" do
