@@ -16,6 +16,10 @@ defmodule Board do
     cell_value(board, index) == :empty
   end
 
+  def is_full?(board) do
+    Enum.find(board, fn(x) -> x == :empty end) == nil
+  end
+
   def row(board) do
     Enum.chunk_every(board,3)
   end

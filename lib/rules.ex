@@ -21,8 +21,7 @@ defmodule Rules do
     if board == Board.empty_board() do
       false
     else
-      Enum.find(board, fn(x) -> x == :empty end) == nil
-      && win?(board) == nil
+      Board.is_full?(board) && win?(board) == nil
     end
   end
 
