@@ -4,6 +4,8 @@ defmodule Board do
     |> Enum.map(fn(_) -> :empty end)
   end
 
+  def default_board_size(), do: 9
+
   def insert_symbol(board, index, symbol) do
     List.replace_at(board, index, symbol)
   end
