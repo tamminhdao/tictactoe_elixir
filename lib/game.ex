@@ -1,7 +1,12 @@
 defmodule Game do
-  def play(board, player_one, player_two) do
-    cell_index = EasyAI.cell_selection(board)
-    board |> move(cell_index, player_one)
+  def play(board, players) do
+    if Rules.game_in_progress?(board) do
+      cell_index = EasyAI.cell_selection(board)
+      new_board = board |> move(cell_index, Enum.at(players, 0))
+      play(new_board, Enum.reverse(players))
+    else
+      board
+    end
   end
 
   def move(board, cell, player) do
