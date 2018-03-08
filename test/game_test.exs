@@ -13,14 +13,14 @@ defmodule GameTest do
             |> Game.move(0, :X)
             |> Game.move(1, :X)
             |> Game.move(2, :X)
-    final_board = Game.play(board, [:X, :O])
+    final_board = Game.play(board, [EasyAI, EasyAI], [:X, :O])
     assert final_board == board
   end
 
   describe "a game between 2 easy AIs" do
     test "ends with the first AI winning by the top right to bottom left diagonal" do
       board = Board.empty_board()
-      winning_board = Game.play(board, [:X, :O])
+      winning_board = Game.play(board, [EasyAI, EasyAI], [:X, :O])
       assert winning_board == [:X, :O, :X, :O, :X, :O, :X, :empty, :empty]
     end
   end
